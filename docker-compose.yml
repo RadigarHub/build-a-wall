@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  build-a-wall:
+    container_name: build-a-wall
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+      args:
+        USER_ID: ${UID}
+        GROUP_ID: ${GID}
+    volumes:
+      - .:/build-a-wall
+      - $HOME/.gitconfig:/home/user/.gitconfig
+    extra_hosts:
+      - host.docker.internal:host-gateway
