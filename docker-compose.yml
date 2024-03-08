@@ -9,6 +9,8 @@ services:
       args:
         USER_ID: ${UID}
         GROUP_ID: ${GID}
+    environment:
+      PHP_IDE_CONFIG: serverName=build-a-wall
     volumes:
       - .:/build-a-wall
       - $HOME/.gitconfig:/home/user/.gitconfig
