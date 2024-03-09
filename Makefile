@@ -4,7 +4,7 @@
 help:
 	@echo "Available targets:"
 	@echo "  deps                       -->  To build docker container and install dependencies. IT MUST BE RUN FIRST ONE TIME."
-	@echo "  build-a-wall ARGS=\"\$$1 \$$2\"  -->  To run the command to build a wall with the given arguments being [\$$1 = Number of rows] and [\$$2 = Number of bricks]"
+	@echo "  build-a-wall ARGS=\"\$$1 \$$2\"  -->  To run the command to build a wall with the given arguments being [\$$1 = Number of rows] and [\$$2 = Number of bricks per row]"
 	@echo "  test/coverage              -->  To test the application with code coverage"
 
 build:
@@ -20,6 +20,7 @@ deps: build
 
 clean-cache:
 	@rm -rf var
+	@UID=${shell id -u} GID=${shell id -g} docker compose run --user $(shell id -u):$(shell id -g) build-a-wall bash -c "composer dump-autoload --classmap-authoritative"
 	@UID=${shell id -u} GID=${shell id -g} docker compose run --user $(shell id -u):$(shell id -g) build-a-wall bash -c "bin/console cache:warmup"
 
 bin/console:
