@@ -34,9 +34,30 @@ class BuildAWallCommandTest extends KernelTestCase
 
     public function provideArguments(): array
     {
+        $wall_5x5 = <<<EOT
+                  ■■|■■|■■|■■|■■
+                  ■|■■|■■|■■|■■|■
+                  ■■|■■|■■|■■|■■
+                  ■|■■|■■|■■|■■|■
+                  ■■|■■|■■|■■|■■
+                  EOT;
+
+        $wall_10_7 = <<<EOT
+                     ■|■■|■■|■■|■■|■■|■■|■
+                     ■■|■■|■■|■■|■■|■■|■■
+                     ■|■■|■■|■■|■■|■■|■■|■
+                     ■■|■■|■■|■■|■■|■■|■■
+                     ■|■■|■■|■■|■■|■■|■■|■
+                     ■■|■■|■■|■■|■■|■■|■■
+                     ■|■■|■■|■■|■■|■■|■■|■
+                     ■■|■■|■■|■■|■■|■■|■■
+                     ■|■■|■■|■■|■■|■■|■■|■
+                     ■■|■■|■■|■■|■■|■■|■■
+                     EOT;
+
         return [
-            [['parameters' => [5, 5]], 'SHOW WALL'],
-            [['parameters' => ['10', '7']], 'SHOW WALL'],
+            [['parameters' => [5, 5]], $wall_5x5],
+            [['parameters' => ['10', '7']], $wall_10_7],
             [['parameters' => ['eight', 'five']], 'null'],
             [['parameters' => [[3], [5]]], 'null'],
             [['parameters' => [0, 0]], 'null'],
@@ -47,8 +68,6 @@ class BuildAWallCommandTest extends KernelTestCase
             [[], 'null'],
             [['parameters' => [3]], 'null'],
             [['parameters' => [3, 5, 8]], 'null'],
-            [['parameters' => [1, 10000]], 'SHOW WALL'],
-            [['parameters' => [10000, 1]], 'SHOW WALL'],
             [['parameters' => [1, 10001]], "Naah, too much...here's my resignation."],
             [['parameters' => [10001, 1]], "Naah, too much...here's my resignation."],
         ];

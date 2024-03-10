@@ -46,10 +46,6 @@ class BuildAWallCommand extends Command
             $output->writeln($e->getMessage());
 
             return Command::SUCCESS;
-        } catch (\Exception $e) {
-            $output->writeln('null');
-
-            return Command::SUCCESS;
         }
     }
 
